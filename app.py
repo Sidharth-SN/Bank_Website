@@ -11,8 +11,6 @@ def login():
 
         u = Users.query.filter_by(username = user).first()
         if u != None:
-        # if user in USERS:
-            # if USERS[user][1] == passw:
             if passw == u.passwd:
                 session['user'] = user
                 return redirect(url_for('index'))
@@ -262,11 +260,6 @@ def delete_account():
         return redirect(url_for('index'))
 
 
-# @app.route("/register")
-# def register():
-#     return render_template('register.html')
-
-
 @app.route("/register", methods = ['POST', 'GET'])
 def register():
     if request.method == 'POST':
@@ -281,8 +274,6 @@ def register():
 
         u = Users.query.filter_by(username = user).first()
         if u != None:
-        # if username in USERS:
-        #     if Email == USERS[username][0]:
             if Email == u.email:
                 flash('User already registered with same Username and Email')
                 return redirect(url_for('register'))
@@ -290,7 +281,6 @@ def register():
                 flash('User already registered with same Username')
                 return redirect(url_for('register'))
         else:
-            # if Email == Users.query.filter_by(username = user).first().email:
             if Users.query.filter_by(email = Email).first() != None:
                 flash('User already registered with same Email')
                 return redirect(url_for('register'))
@@ -316,7 +306,6 @@ def register():
                     db.session.add(users)
                     db.session.commit()
         
-                    # USERS[username] = [Email, pass1]
                     return redirect(url_for('acc_register', user = user))
 
     return render_template('register.html')
@@ -437,3 +426,4 @@ def acc_register(user):
             return redirect(url_for('login'))
 
     return render_template('account_regi.html', user = user)
+
