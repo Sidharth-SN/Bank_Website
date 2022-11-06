@@ -1,4 +1,4 @@
-from . import db, app
+from __init__ import db, app
 from flask_migrate import Migrate
 from datetime import datetime, date
 
