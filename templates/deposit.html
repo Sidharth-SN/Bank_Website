@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>S$S BANK</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/deposit_css.css">
+    <link rel="stylesheet" href="../static/css/index_css.css">
+  </head>
+
+  <body>
+    {% include "./header.html" %}
+    <div class="main-block">
+      <div class="left-part">
+        
+        <h1>S$S BANK</h1>
+        <h1>Complete Banking Solution</h1>
+      </div>
+      <form action="/deposit" method="POST">
+        <div class="title">
+          
+          <h2>Deposit Money</h2>
+        </div>
+        <div class="info">
+          <input class="fname" type="text" name="acc_number" value="{{detl[0]}}" readonly>
+          <input class="fname" type="text" name="aname" value="{{detl[1]}}" readonly>
+          <input type="text" name="username" placeholder="User Name" required>
+          <input type="password" name="passw" placeholder="Password" required>
+          <input type="number" name="amount" placeholder="Amount" required>
+        </div>
+        
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                  <p id="mess">{{ message }}</p>
+              {% endfor %}
+          {% endif %}
+        {% endwith %}
+        
+        <button type="submit">Deposit</button>
+      </form>
+
+    </div>
+    {% include "./footer.html" %}
+  </body>
+</html>

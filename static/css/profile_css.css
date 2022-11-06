@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgb(0, 124, 128), #e60c8b);
+}
+
+.form-box{
+    position: relative;
+    width: 480px;
+    height: 700px;
+    background: linear-gradient(135deg, #150339, purple);
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 8% 37%;
+}
+.form-box::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 520px;
+    background: linear-gradient(0deg, transparent, #fff);
+    animation: animate 6s linear infinite;
+    transform-origin: bottom right;
+}
+.form-box::after{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 520px;
+    background: linear-gradient(0deg, transparent, #fff);
+    animation: animate 6s linear infinite;
+    transform-origin: bottom right;
+    animation-delay: -3s;
+}
+@keyframes animate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+    
+}
+.form{
+    display: flex;
+    position: absolute;
+    inset: 5px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #150339, purple);
+    z-index: 10;
+    padding: 50px 40px;
+    flex-direction: column;
+}
+.form h2{
+    font-size: 30px;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.1em;
+
+}
+.form h2::before{
+    position: absolute;
+    top: 100px;
+    left: 135px;
+    content: '';
+    background: #fff;
+    height: 2px;
+    width: 100px;
+}
+#lower{
+    padding-top: 10%;
+    width: 300px;
+    height: 230px;
+    color: white;
+    background: linear-gradient(#150339, purple);
+}
+
+#pic {
+    width: 50%;
+    height: 33%;
+    border-radius: 50%;
+    margin-top: 10%;
+    margin-left: 22%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.486);
+  max-width: 300px;
+  height: 350px;
+  margin-top: 14%;
+  margin-left: 12%;
+  text-align: center;
+}
+
+.title {
+  color: rgb(247, 246, 216);
+  font-size: 16px;
+  font-family: cursive;
+
+}
+
+#detail, h1 {
+  color: rgb(247, 253, 189);
+  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+}

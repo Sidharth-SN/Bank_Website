@@ -1,0 +1,100 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/cards_css.css" />
+    <link rel="stylesheet" href="../static/css/index_css.css">
+    <title>Cards</title>
+    
+  </head>
+  <body>
+  {% include "./header.html" %}
+    <div id="secs">
+      <div class="containers c">
+        {% for c in cards[0] %}
+        <div class="card front-face cimg">
+          <header>
+            <span class="logo">
+             <h5>Credit Card </h5>
+            </span>
+            <img src="/static/img/wifi.png" alt="" class="chip"/>
+           <img src="/static/img/chip.png" alt="" class="chip" />
+          </header>
+            <div class="card-details">
+              <div class="name-number">
+                <h2>S$S BANK</h2>
+                <h6>Card Number</h6>
+                <h5 class="number">{{c.card_no}}</h5>
+                <h5 class="name">{{c.card_holder_name}}</h5>
+              </div>
+              
+              <div class="valid-date">
+                <img src="/static/img/visa.png" alt="" class="chip visa"/>
+                <h6>Valid Thru</h6>
+                <h5>{{c.valid_to}}</h5>
+              </div>
+            </div>
+          </div>
+
+          <div class="card back-face cimg">
+            <h6>
+              For customer service call +977 4343 6969 or email at
+              SSSBANKING@gmail.com
+            </h6>
+            <span class="magnetic-strip"></span>
+            <div class="signature"><i>{{c.cvv}}</i></div>
+            <h5>
+              Apply for Zero Balance Savings account and grow your money with up to 4% interest p.a. The digital savings account helps with regular banking activities like transferring funds, paying bills and more.
+            </h5>
+          <!-- <img src="/static/css/bird.png" alt="" class="bird"/> -->
+        </div>
+        {% endfor %}
+      </div>
+      
+      <div class="containers d">
+        {% for d in cards[1] %}
+        <div class="card front-face dimg">
+          <header>
+            <span class="logo">
+             <h5>Debit Card </h5>
+            </span>
+            <img src="/static/img/wifi.png" alt="" class="chip"/>
+           <img src="/static/img/chip.png" alt="" class="chip" />
+          </header>
+
+          <div class="card-details">
+            <div class="name-number">
+              <h2>S$S BANK</h2>
+              <h6>Card Number</h6>
+              <h5 class="number">{{d.card_no}}</h5>
+              <h5 class="name">{{d.card_holder_name}}</h5>
+            </div>
+
+            <div class="valid-date">
+              <img src="/static/img/visa.png" alt="" class="chip visa"/>
+              <h6>Valid Thru</h6>
+              <h5>{{d.valid_to}}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="card back-face dimg">
+          <h6>
+            For customer service call +977 4420 4420 or email at
+            SSSBANKING@gmail.com
+          </h6>
+          <span class="magnetic-strip"></span>
+          <div class="signature"><i>{{d.cvv}}</i></div>
+          <h5>
+            Apply for Zero Balance Savings account and grow your money with up to 4% interest p.a. The digital savings account helps with regular banking activities like transferring funds, paying bills and more.
+          </h5>
+        </div>
+        {% endfor %}
+      </div>
+   
+    </div>
+    {% include "./footer.html" %}
+  </body>
+</html>
+

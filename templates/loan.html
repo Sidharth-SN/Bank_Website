@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/loan_css.css">
+    <link rel="stylesheet" href="../static/css/index_css.css">   
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Loans Application</title>
+   </head>
+<body>
+  {% include "./header.html" %}
+  <div class="containers">
+    <div class="title">LOAN APPLICATION</div>
+    <div class="content">
+
+      <form action="/loans" method="POST" onsubmit="return alert('Loan Applied succesfully. We will let you know the loan status through your registered email.');">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input type="text" name="name" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Father Name</span>
+            <input type="text" name="fname" placeholder="Enter your username" required>
+          </div>
+          <!-- <div class="input-box">
+            <span class="details">Email</span>
+            <input type="text" placeholder="Enter your email" required>
+          </div> -->
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="text" name="phone" placeholder="Enter your number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Address</span>
+            <input type="text" name="address" placeholder="Enter your Address" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Age</span>
+            <input type="number" name="age" placeholder="Enter your Age" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Name of Proprietor</span>
+            <input type="text" name="proprietor" placeholder="Enter name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Occupation</span>
+            <input type="text" name="occupation" placeholder="Enter your Occupation" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Amount of loan</span>
+            <input type="number" name="loanA" placeholder="Enter the amount" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Purpose of loan</span>
+            <input type="text" name="loanPurp" placeholder="Enter your purpose" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Period of loan in months</span>
+            <input type="number" name="loanPeriod" placeholder="Enter period" required>
+          </div>
+          <!-- <div class="input-box">
+            <span class="details">Mode of repayment</span>
+            <input type="text" placeholder="Enter a mode" required>
+          </div> -->
+          <div class="input-box">
+            <span class="details">Nationality</span>
+            <input type="text" name="nation" placeholder="Enter your Nationality" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Monthly income</span>
+            <input type="number" name="income" placeholder="Enter your Monthly income" required>
+          </div>
+          <!-- <div class="input-box">
+            <span class="details">Voter ID</span>
+            <input type="text" placeholder="Enter your Voter ID" required>
+          </div> -->
+          <div class="input-box">
+            <span class="details">Pan card Number</span>
+            <input type="text" name="pan" value="{{detl[1]}}" readonly>
+          </div>
+          <!-- <div class="input-box">
+            <span class="details">Passport Number</span>
+            <input type="text" placeholder="Enter your Passport number" required>
+          </div> -->
+          <div class="input-box">
+            <span class="details">Account number</span>
+            <input type="text" name="acc" value="{{detl[0]}}" readonly>
+          </div>
+          
+
+          <div class="input-box">
+            <span class="details">Loan type</span>
+                <select name="loan_type" id="selector" onchange="yesnoCheck(this);">
+                  <option value="personal">Personal Loan</option>
+                  <option value="home">Home Loan</option>
+                  <option value="car">Car Loan</option>
+                  <option value="agriculture">Agriculture Loan</option>
+                  <option value="gold">Gold Loan</option>
+                  <option value="education">Education Loan</option>
+                  <option value="business">Business Loan</option>
+                </select>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Loan Intrest Rate</span>
+            <input id="rate" type="text" value="" name="intrestR" placeholder="10.50% p.a." readonly>
+          </div>
+          
+        </div>
+        <div class="gender-details">
+          <input type="radio" value="Male" name="gender" id="dot-1">
+          <input type="radio" value="Female" name="gender" id="dot-2">
+          <input type="radio" value="Prefer not to say" name="gender" id="dot-3" checked>
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+            <span class="dot one"></span>
+            <span class="gender">Male</span>
+          </label>
+          <label for="dot-2">
+            <span class="dot two"></span>
+            <span class="gender">Female</span>
+          </label>
+          <label for="dot-3">
+            <span class="dot three"></span>
+            <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                  <p id="mess">{{ message }}</p>
+              {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="button">
+          <input type="submit" value="APPLY">
+        </div>
+      </form>
+
+    </div>
+  </div>
+  {% include "./footer.html" %}
+</body>
+<script src="../static/script.js"></script>
+</html>

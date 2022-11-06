@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Balance</title>
+	<link rel="stylesheet" href="/static/css/balance.css">
+	<link rel="stylesheet" href="../static/css/index_css.css">
+</head>
+<body>
+	{% include "./header.html" %}
+	<div class="wrapper">
+		<div class="center">
+            <h1 id="head">S$S Bank</h1>
+			
+			<!-- acc dtails -->
+			<h5 id="det">Account Number: {{accDetail[0]}}</h5>
+			<h5 id="det">IFSC Code: {{accDetail[1]}}</h5>
+
+			<form action="/balance" method="POST">
+				<div id="log">
+					<h5 id="det">Enter your password:		
+						<input type="password" name="pass" id="pass" placeholder="Password">
+					</h5>
+
+					{% with messages = get_flashed_messages() %}
+						{% if messages %}
+							{% for message in messages %}
+								<p id="mess">{{ message }}</p>
+							{% endfor %}
+						{% endif %}
+					{% endwith %}
+
+					<button type="submit">Verify</button>
+				</div>
+			</form>
+
+			<p id="det">Your Bank Balance:</p>
+			<input type="text" id="money" disabled placeholder="*****" value = {{accDetail[2]}}>
+
+			<div class="buttons">
+				<a type="button" id="btn" href="/deposit">Deposit Money</a>
+				<a type="button" id="btn" href="/transfer">Transfer Money</a>
+			</div>
+		</div>
+	</div>
+	{% include "./footer.html" %}
+</body>
+</html>

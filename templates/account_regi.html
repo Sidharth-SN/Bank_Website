@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/css/acc_regi.css">
+    <link rel="stylesheet" href="../static/css/index_css.css">   
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Accounts</title>
+   </head>
+<body>
+
+    <section id="header">
+        <div class="header container">
+          <div class="nav-bar">
+            <div class="brand">
+                <h1><span>S</span>$<span>S</span>Bank</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+
+  <div class="containers">
+    <div class="title">ACCOUNT APPLICATION</div>
+    <div class="content">
+
+      <form action="/acc_register/{{user}}" method="POST">
+        <div class="user-details">
+
+            <p id="subHead1">Personal Information:</p>
+
+          <div class="input-box">
+            <span class="details">First Name</span>
+            <input type="text" name="fname" placeholder="First name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <input type="text" name="lname" placeholder="Last name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Father Name</span>
+            <input type="text" name="fathername" placeholder="Father name" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Date of birth</span>
+            <input type="date" name="dob" placeholder="MM-DD-YYYY" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Address Line 1</span>
+            <input type="text" name="address1" id="addr" placeholder="House no. / Street no." required>
+          </div>
+          <div class="input-box"></div>
+          <div class="input-box">
+            <span class="details">Address Line 2</span>
+            <input type="text" name="address2" id="addr" placeholder="Address" required>
+          </div>
+          <div class="input-box"></div>
+          <div class="input-box">
+            <span class="details">City</span>
+            <input type="text" name="city" placeholder="City" required>
+          </div>
+          <div class="input-box">
+            <span class="details">State/Province</span>
+            <input type="text" name="state" placeholder="State" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Postal code</span>
+            <input type="number" name="pinCode" placeholder="Pin Code" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Country</span>
+            <input type="text" name="country" placeholder="Country" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="number" name="phone" placeholder="+91- XXX XXX XXXX" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Occupation</span>
+            <input type="text" name="occupation" placeholder="Occupation" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Aadhar card Number</span>
+            <input type="number" name="aadhar" placeholder="Aadhar number" required>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Pan card Number</span>
+            <input type="text" name="pan" placeholder="Pan number" required>
+          </div>
+          
+
+          <div class="input-box">
+            <span class="details">Marital status</span>
+                <select name="marital" id="selector">
+                  <option value="single">Single</option>
+                  <option value="married">Married</option>
+                  <option value="divored">Divorced</option>
+                  <option value="widowed">Widowed</option>
+                </select>
+          </div>
+
+          <div class="input-box">
+            <span class="details">Gender</span>
+                <select name="gender" id="selector">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+          </div>
+        
+            <p id="subHead2">Account Information:</p>
+
+            <!-- <div class="input-box">
+                <span class="details">Bank Name</span>
+                <input type="text" name="bname" value="S$S Bank" readonly>
+            </div> -->
+
+            <div class="input-box">
+                <span class="details">Account type</span>
+                    <select name="acc_type" id="selector">
+                    <option value="saving">Savings Account</option>
+                    <option value="checking">Checking Account</option>
+                    <option value="ira">IRA Account</option>
+                    </select>
+            </div>
+        </div>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+              {% for message in messages %}
+                  <p id="mess">{{ message }}</p>
+              {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="button">
+          <input type="submit" value="CREATE">
+        </div>
+      </form>
+
+    </div>
+  </div>
+  {% include "./footer.html" %}
+</body>
+</html>

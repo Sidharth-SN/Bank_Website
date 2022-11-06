@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/profile_css.css">
+    <link rel="stylesheet" href="../static/css/index_css.css">   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>User Profile</title>
+</head>
+<body>
+    {% include "./header.html" %}
+    
+    <!-- <div class="container text-center">
+        <div class="row"> -->
+          <!-- <div class="col"> -->
+
+            <!-- </div> -->
+
+          <!-- <div class="col"> -->
+            <div class="form-box">
+                <div class="form">
+                    <h2>S$S BANK</h2>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+                    <!-- <div class="card"> -->
+                    <img src="https://e7.pngegg.com/pngimages/216/156/png-clipart-squidward-tentacles-mr-krabs-patrick-star-internet-meme-rage-comic-meme-meme-rage-comic-thumbnail.png" alt="John" id="pic">
+                    <div class="card">
+                    <div id="lower">
+
+                        <h1>{{acc_details.acc_holder_name}}</h1>
+                        <p class="title">ACC NO: {{acc_details.acc_no}}</p>
+
+                        <p id="detail">IFSC Code: {{acc_details.ifsc}}</p>
+                        <p id="detail">Account Type: {{acc_details.acc_type}}</p>
+                        <p id="detail">Phone Number: {{acc_details.phoneNo}}</p>
+
+                    </div>
+                    
+                    </div>
+                </div>
+            <!-- </div> -->
+          <!-- </div> -->
+        </div>
+    <!-- </div> -->
+    <li><a href="{{ url_for('delete_account') }}" onclick="return confirm('Are you sure you want to Delete this Account?');"><p class="btn btn-outline-danger">Delete Account</p></a></li>
+
+    {% include "./footer.html" %}
+</body>
+</html>
+

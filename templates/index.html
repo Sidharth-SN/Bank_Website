@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="../static/css/index_css.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+  <title>S$S Bank</title>
+
+</head>
+
+<body>
+  
+  {% include "./header.html" %}
+
+  <!-- Main Section  -->
+  <section id="main">
+    <div class="container main">
+      <div>
+        <h1>Hello, <span></span></h1>
+        <h1>welcome to <span></span></h1>
+        <h1>S$S BANK <span></span></h1>
+        <!-- <h1><a href="#services" type="button" class="cta ss">OUR SERVICES<span></span></a></h1> -->
+        <a href="#services" type="button" class="cta ss">OUR SERVICES</a>
+      </div>
+    </div>
+  </section>
+  <!-- End Main Section  -->
+
+  <!-- Service Section -->
+  <section id="services">
+    <div class="services container">
+      <div class="service-top">
+        <h1 class="section-title">Ser<span>vi</span>ces</h1>
+        <p></p>
+      </div>
+
+      {% if session %}
+          <div class="service-bottom">
+            <div class="service-item">
+              <div class="icon"><img src="https://img.freepik.com/premium-vector/hand-holding-bag-with-money-icon-black-money-sack-sign-vector-isolated-white-background-eps-10_399089-2809.jpg?w=2000" /></div>
+              <a type="button" class="cta" href="/balance">Check Balance</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="data:image/png;base64,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" /></div>
+              <a type="button" class="cta" href="/deposit">Deposit Money</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="https://thumbs.dreamstime.com/b/money-exchange-transfer-icon-vector-illustration-graphic-web-design-template-black-color-editable-symbol-flat-sign-171152659.jpg" /></div>
+              <a type="button" class="cta" href="/transfer">Transfer Money</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="https://thumbs.dreamstime.com/b/black-solid-icon-home-loan-logo-symbol-mortgage-146530491.jpg" /></div>
+              <a type="button" class="cta" href="/loans">Apply for Loan</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="https://www.seekpng.com/png/detail/301-3019347_purchase-history-icon-transaction-history-icon-png.png" /></div>
+              <a type="button" class="cta" href="/transaction">Transaction History</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsi9T90dGiQRV2FNKkaFv-mlF-9V7j0pr8Y1qvdll6j4DFs57EoVv0nrSbCMHZYnQS5no&usqp=CAU" /></div>
+              <a type="button" class="cta" href="/cards">Debit/Credit Cards</a>
+              <p></p>
+            </div>
+          </div>
+
+      {% else %}
+          <div class="service-bottom">
+            <div class="service-item">
+              <div class="icon"><img src="https://img.freepik.com/premium-vector/hand-holding-bag-with-money-icon-black-money-sack-sign-vector-isolated-white-background-eps-10_399089-2809.jpg?w=2000" /></div>
+              <a type="button" class="cta" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-custom-class="custom-popover" data-bs-title="S$S Bank" data-bs-content="Please Login to continue :).">Check Balance</a>
+              <p></p>
+            </div>
+            <!-- <a href = "{{ url_for('login') }}"><p id = "login">Login</p></a> -->
+            <div class="service-item">
+              <div class="icon"><img src="data:image/png;base64,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" /></div>
+              <a type="button" class="cta" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-custom-class="custom-popover" data-bs-title="S$S Bank" data-bs-content="Please Login to continue :).">Deposit Money</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="https://thumbs.dreamstime.com/b/money-exchange-transfer-icon-vector-illustration-graphic-web-design-template-black-color-editable-symbol-flat-sign-171152659.jpg" /></div>
+              <a type="button" class="cta" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-custom-class="custom-popover" data-bs-title="S$S Bank" data-bs-content="Please Login to continue :).">Transfer Money</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="https://thumbs.dreamstime.com/b/black-solid-icon-home-loan-logo-symbol-mortgage-146530491.jpg" /></div>
+              <a type="button" class="cta" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-custom-class="custom-popover" data-bs-title="S$S Bank" data-bs-content="Please Login to continue :).">Apply Loan</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="https://www.seekpng.com/png/detail/301-3019347_purchase-history-icon-transaction-history-icon-png.png" /></div>
+              <a type="button" class="cta" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-custom-class="custom-popover" data-bs-title="S$S Bank" data-bs-content="Please Login to continue :).">Transaction History</a>
+              <p></p>
+            </div>
+            <div class="service-item">
+              <div class="icon"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsi9T90dGiQRV2FNKkaFv-mlF-9V7j0pr8Y1qvdll6j4DFs57EoVv0nrSbCMHZYnQS5no&usqp=CAU" /></div>
+              <a type="button" class="cta" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-custom-class="custom-popover" data-bs-title="S$S Bank" data-bs-content="Please Login to continue :).">Debit/Credit Cards</a>
+              <p></p>
+            </div>
+          </div>
+
+      {% endif %}
+
+    </div>
+  </section>
+  <!-- End Service Section -->
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="about container">
+      <div class="col-left">
+        <div class="about-img">
+          <img src="https://thumbs.dreamstime.com/b/bank-building-icon-isolated-black-background-bank-building-icon-isolated-black-background-simple-vector-logo-161293296.jpg" alt="img">
+        </div>
+      </div>
+      <div class="col-right">
+        <h1 class="section-title">About <span>us</span></h1>
+        <h2>S$S BANK</h2>
+        <p>S$S Bank, with nearly 70,000 employees and $54 billion in assets as of December 31, 2021, is the parent company of Fake Bank National Association, 
+          the fifth-largest commercial bank in the India. The Minneapolis-based bank blends its relationship teams, branches and ATM network with digital tools 
+          that allow customers to bank when, where and how they prefer. S$S Bank is committed to serving its millions of retail, business, wealth management, payment, 
+          commercial, corporate, and investment customers across the country and around the world as a trusted and responsible financial partner.<a href="/aboutUs"> more.</a></p>
+        
+      </div>
+    </div>
+  </section>
+  <!-- End About Section -->
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="contact container">
+      <div>
+        <h1 class="section-title">Contact <span>info</span></h1>
+      </div>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
+          <div class="contact-info">
+            <h1>Phone</h1>
+            <h2>+1 234 420 1269</h2>
+            <h2>+1 696 420 6969</h2>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
+          <div class="contact-info">
+            <h1>Email</h1>
+            <h2>SSSbanking420@gmail.com</h2>
+            <h2>SSS420@gmail.com</h2>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png" /></div>
+          <div class="contact-info">
+            <h1>Address</h1>
+            <h2>Near Prestige Shantinikethan, Whitefield, Bangalore</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+
+  {% include "./footer.html" %}
+
+</body>
+<script src="../static/script.js"></script>
+
+</html>
+
+

@@ -1,0 +1,128 @@
+html, body {
+    min-height: 100%;
+    }
+    body, div, form, input, select, p { 
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+    color: #eee;
+    }
+    body {
+    background: url("https://static.vecteezy.com/system/resources/previews/004/585/326/original/banking-building-business-finance-management-low-poly-wireframe-illustration-isolated-background-free-vector.jpg") no-repeat center;
+    background-size: cover;
+    }
+    h1, h2 {
+    text-transform: uppercase;
+    font-weight: 400;
+    }
+    h2 {
+    margin: 0 0 20px 18px;
+    }
+    
+    #mess {
+        color: rgb(255, 187, 0);
+        /* font-size: medium; */
+    }
+
+    .main-block {
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.5); 
+    }
+    .left-part, form {
+    padding: 25px;
+    }
+    .left-part {
+    text-align: center;
+    margin-top: 5%;
+    margin-right: 40%;
+    }
+
+    .fa-graduation-cap {
+    font-size: 72px;
+    }
+    form {
+    background: rgba(0, 0, 0, 0.7); 
+    margin-top: 3%;
+    margin-left: 14%;
+    border-radius: 5%;
+    height: 510px;
+    width: 600px;
+    }
+    .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    }
+    .info {
+    display: flex;
+    flex-direction: column;
+    }
+    input, select {
+    padding: 5px;
+    margin-bottom: 30px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #eee;
+    }
+    input::placeholder {
+    color: rgb(207, 243, 252);
+    }
+    option:focus {
+    border: none;
+    }
+    option {
+    background: black; 
+    border: none;
+    }
+    .checkbox input {
+    margin: 0 10px 0 0;
+    vertical-align: middle;
+    }
+    .checkbox a {
+    color: #26a9e0;
+    }
+    .checkbox a:hover {
+    color: #85d6de;
+    }
+    .btn-item, button {
+    padding: 10px 5px;
+    margin-top: 20px;
+    border-radius: 5px; 
+    border: none;
+    background: rgb(100, 41, 95); 
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    }
+    .btn-item {
+    display: inline-block;
+    margin: 20px 5px 0;
+    }
+    button {
+    width: 25%;
+    }
+    button:hover, .btn-item:hover {
+    background: rgb(116, 86, 155);
+    }
+    
+    @media (min-width: 568px) {
+    html, body {
+    height: 100%;
+    }
+    .main-block {
+    flex-direction: row;
+
+    /* height: calc(100% - 20px); */
+    }
+    .left-part, form {
+    flex: 1;
+    }
+    }

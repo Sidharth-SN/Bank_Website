@@ -1,0 +1,43 @@
+<!-- Header -->
+<section id="header">
+    <div class="header container">
+      <div class="nav-bar">
+        <div class="brand">
+          <a href="/">
+            <h1><span>S</span>$<span>S</span>Bank</h1>
+          </a>
+        </div>
+        <div class="nav-list">
+          <div class="hamburger">
+            <div class="bar"></div>
+          </div>
+          <ul>
+            <li><a href="/" data-after="Home">Home</a></li>
+            {% if session %}
+            <li><a href="/profile" data-after="Profile">Profile</a></li>
+            {% endif %}
+            <li><a href="/#services" data-after="Service">Services</a></li>
+            <li><a href="/#about" data-after="About">About</a></li>
+            <li><a href="/#contact" data-after="Contact">Contact</a></li>
+            <li>
+            {% if session %}
+              <a href="{{ url_for('logout') }}" ><p id = "logout">Logout</p></a>
+              
+              <!-- {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+              {% endwith %} -->
+
+            {% else %}
+                <a href = "{{ url_for('login') }}"><p id = "login">Login</p></a>
+            {% endif %}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Header -->
