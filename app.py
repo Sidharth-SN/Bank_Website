@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request, session, url_for, flash
 from tables import *
 import re, random
-from . import app
+from __init__ import app
 
 @app.route("/login", methods = ['POST', 'GET'])
 def login():
