@@ -4,16 +4,6 @@ from datetime import datetime, date
 
 migrate = Migrate(app, db, render_as_batch=True)
 
-########################################################################
-# Update the table schema
-# flask db init
-# flask db migrate
-# flask db upgrade
-
-# To run the current file in flask default = app.py
-# $env:FLASK_APP="tables.py"
-#########################################################################
-
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     username = db.Column(db.String(50), unique=True, nullable=False)
