@@ -76,7 +76,7 @@ class Transactions(db.Model):
     medium_tranc = db.Column(db.String(10), nullable = False, default = 'Online')
     type_tranc = db.Column(db.String(10), nullable = False)
 
-    from_acc = db.Column(db.Integer, db.ForeignKey('accounts.acc_no', ondelete = 'CASCADE'))
+    from_acc = db.Column(db.BIGINT, db.ForeignKey('accounts.acc_no', ondelete = 'CASCADE'))
 
 
 class Loans(db.Model):
@@ -98,4 +98,4 @@ class Loans(db.Model):
     gender = db.Column(db.String(10), nullable = False, default = 'Prefer not to say')
     pan_no = db.Column(db.String(10), nullable = False)
 
-    acc = db.Column(db.Integer, db.ForeignKey('accounts.acc_no', ondelete = 'CASCADE'))
+    acc = db.Column(db.BIGINT, db.ForeignKey('accounts.acc_no', ondelete = 'CASCADE'))
