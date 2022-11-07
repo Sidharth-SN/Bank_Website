@@ -144,15 +144,15 @@ def card():
     Dcard = Debit_card.query.filter_by(debit_id = acc.acc_no)
 
 #     cno = '-'.join([str(Ccard.card_no)[i:i+4] for i in range(0, 16, 4)])
-    cc = [Ccard.card_no, Ccard.card_holder_name, Ccard.valid_to, Ccard.cvv]
+#     cc = [Ccard.card_no, Ccard.card_holder_name, Ccard.valid_to, Ccard.cvv]
 
 #     dno = ' '.join([str(Dcard.card_no)[i:i+4] for i in range(0, 16, 4)])
-    dd = [Dcard.card_no, Dcard.card_holder_name, Dcard.valid_to, Dcard.cvv]
+#     dd = [Dcard.card_no, Dcard.card_holder_name, Dcard.valid_to, Dcard.cvv]
 
-    cards = [cc, dd]
+#     cards = [cc, dd]
     
     cards = [Ccard, Dcard]
-    return render_template('cards.html', cards = cards)
+    return render_template('cards.html', cards = [Ccard, Dcard])
 
 @app.route("/transfer", methods = ['POST', 'GET'])
 def transfer():
