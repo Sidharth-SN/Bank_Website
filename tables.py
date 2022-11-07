@@ -48,7 +48,7 @@ class Credit_card(db.Model):
     card_holder_name = db.Column(db.String(50), nullable = False)
     credit_limit = db.Column(db.Integer, nullable = False)
     outstanding = db.Column(db.Integer, default = 0)
-    bill_date = db.Column(db.String(7), nullable = False)
+    bill_date = db.Column(db.String(20), nullable = False)
     valid_from = db.Column(db.String(7), nullable = False)
     valid_to = db.Column(db.String(7), nullable = False)
     cvv = db.Column(db.Integer, nullable = False)
