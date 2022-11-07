@@ -143,11 +143,11 @@ def card():
     Ccard = Credit_card.query.filter_by(credit_id = acc.acc_no)
     Dcard = Debit_card.query.filter_by(debit_id = acc.acc_no)
 
-    cno = '-'.join([str(Ccard.card_no)[i:i+4] for i in range(0, 16, 4)])
-    cc = [cno, Ccard.card_holder_name, Ccard.valid_to, Ccard.cvv]
+#     cno = '-'.join([str(Ccard.card_no)[i:i+4] for i in range(0, 16, 4)])
+    cc = [Ccard.card_no, Ccard.card_holder_name, Ccard.valid_to, Ccard.cvv]
 
-    dno = ' '.join([str(Dcard.card_no)[i:i+4] for i in range(0, 16, 4)])
-    dd = [dno, Dcard.card_holder_name, Dcard.valid_to, Dcard.cvv]
+#     dno = ' '.join([str(Dcard.card_no)[i:i+4] for i in range(0, 16, 4)])
+    dd = [Dcard.card_no, Dcard.card_holder_name, Dcard.valid_to, Dcard.cvv]
 
     cards = [cc, dd]
     
