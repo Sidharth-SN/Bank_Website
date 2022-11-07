@@ -25,14 +25,14 @@
               <div class="name-number">
                 <h2>S$S BANK</h2>
                 <h6>Card Number</h6>
-                <h5 class="number">{{c[0]}}</h5>
-                <h5 class="name">{{c[1]}}</h5>
+                <h5 class="number">{{c.card_no}}</h5>
+                <h5 class="name">{{c.card_holder_name}}</h5>
               </div>
               
               <div class="valid-date">
                 <img src="/static/img/visa.png" alt="" class="chip visa"/>
                 <h6>Valid Thru</h6>
-                <h5>{{c[2]}}</h5>
+                <h5>{{c.valid_to}}</h5>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
               SSSBANKING@gmail.com
             </h6>
             <span class="magnetic-strip"></span>
-            <div class="signature"><i>{{c[3]}}</i></div>
+            <div class="signature"><i>{{c.cvv}}</i></div>
             <h5>
               Apply for Zero Balance Savings account and grow your money with up to 4% interest p.a. The digital savings account helps with regular banking activities like transferring funds, paying bills and more.
             </h5>
@@ -67,14 +67,14 @@
             <div class="name-number">
               <h2>S$S BANK</h2>
               <h6>Card Number</h6>
-              <h5 class="number">{{d[0]}}</h5>
-              <h5 class="name">{{d[1]}}</h5>
+              <h5 class="number">{{d.card_no}}</h5>
+              <h5 class="name">{{d.card_holder_name}}</h5>
             </div>
 
             <div class="valid-date">
               <img src="/static/img/visa.png" alt="" class="chip visa"/>
               <h6>Valid Thru</h6>
-              <h5>{{d[2]}}</h5>
+              <h5>{{d.valid_to}}</h5>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
             SSSBANKING@gmail.com
           </h6>
           <span class="magnetic-strip"></span>
-          <div class="signature"><i>{{d[3]}}</i></div>
+          <div class="signature"><i>{{d.cvv}}</i></div>
           <h5>
             Apply for Zero Balance Savings account and grow your money with up to 4% interest p.a. The digital savings account helps with regular banking activities like transferring funds, paying bills and more.
           </h5>
