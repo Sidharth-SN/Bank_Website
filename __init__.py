@@ -5,7 +5,7 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
     app.secret_key ='sdfjosidjh4ojg$_%JOI)JOJ54469420@69'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bank.db'
+    app.config['DATABASE_URL'] = 'sqlite:///bank.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
     db.init_app(app)
