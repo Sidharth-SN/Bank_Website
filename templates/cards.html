@@ -25,7 +25,7 @@
               <div class="name-number">
                 <h2>S$S BANK</h2>
                 <h6>Card Number</h6>
-                <h5 class="number">{{'-'.join([(str(c.card_no)[i:i+4]) for i in range(0, len(str(c.card_no)), 4)])}}</h5>
+                <h5 class="number">{{'-'.join([str(c.card_no)[i:i+4] for i in range(0, len(str(c.card_no)), 4)])}}</h5>
                 <h5 class="name">{{c.card_holder_name}}</h5>
               </div>
               
@@ -67,7 +67,7 @@
             <div class="name-number">
               <h2>S$S BANK</h2>
               <h6>Card Number</h6>
-              <h5 class="number">{{' '.join([(str(d.card_no)[i:i+4]) for i in range(0, len(str(d.card_no)), 4)])}}</h5>
+              <h5 class="number">{{' '.join([str(d.card_no)[i:i+4] for i in range(0, len(str(d.card_no)), 4)])}}</h5>
               <h5 class="name">{{d.card_holder_name}}</h5>
             </div>
 
