@@ -53,7 +53,7 @@ class Credit_card(db.Model):
     valid_to = db.Column(db.String(7), nullable = False)
     cvv = db.Column(db.Integer, nullable = False)
 
-    credit_id = db.Column(db.Integer, db.ForeignKey('accounts.acc_no', ondelete = 'CASCADE'))
+    credit_id = db.Column(db.BIGINT, db.ForeignKey('accounts.acc_no', ondelete = 'CASCADE'))
 
 
 class Debit_card(db.Model):
@@ -64,7 +64,7 @@ class Debit_card(db.Model):
     valid_to = db.Column(db.String(7), nullable = False)
     cvv = db.Column(db.Integer, nullable = False)
 
-    debit_id = db.Column(db.Integer, db.ForeignKey('accounts.acc_no', ondelete = 'CASCADE'))
+    debit_id = db.Column(db.BIGINT, db.ForeignKey('accounts.acc_no', ondelete = 'CASCADE'))
 
 
 class Transactions(db.Model):
