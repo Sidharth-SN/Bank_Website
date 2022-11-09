@@ -4,7 +4,7 @@
       <div class="nav-bar">
         <div class="brand">
           <a href="/">
-            <h1><span>S</span>$<span>S</span>Bank</h1>
+            <h1><span>F</span>AK<span>E</span>Bank</h1>
           </a>
         </div>
         <div class="nav-list">
@@ -22,14 +22,6 @@
             <li>
             {% if session %}
               <a href="{{ url_for('logout') }}" ><p id = "logout">Logout</p></a>
-              
-              <!-- {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        {{ message }}
-                    {% endfor %}
-                {% endif %}
-              {% endwith %} -->
 
             {% else %}
                 <a href = "{{ url_for('login') }}"><p id = "login">Login</p></a>
