@@ -9,9 +9,15 @@ def login():
         user = request.form['username']
         passw = request.form['pass']
 
-        u = Users.query.filter_by(username = user).first()
-        if u != None:
-            if passw == u.passwd:
+        global db_u, db_acc
+        db_u = Users.query.filter_by(username = user).first()
+        db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
+
+        if db_u != None:
+            if passw == db_u.passwd:
+                if not Accounts.query.filter_by(user_id = db_u.id).first():
+                    return redirect(url_for('acc_register', user = user))
+
                 session['user'] = user
                 return redirect(url_for('index'))
             else:
@@ -28,26 +34,26 @@ def index():
  
 @app.route("/profile", methods = ['POST', 'GET'])
 def profile():
-    u = Users.query.filter_by(username = session['user']).first()
-    acc = Accounts.query.filter_by(user_id = u.id).first()
+    if not db_acc:
+        return redirect(url_for('acc_register', user = session['user']))
 
-    return render_template('profile.html', acc_details = acc)
+    return render_template('profile.html', acc_details = db_acc)
 
 
 @app.route("/balance", methods = ['POST', 'GET'])
 def balance():
-    u = Users.query.filter_by(username = session['user']).first()
-    acc = Accounts.query.filter_by(user_id = u.id).first()
+    if not db_acc:
+        return redirect(url_for('acc_register', user = session['user']))
 
     if request.method == 'POST':
         passw = request.form['pass']
-        if passw != u.passwd:
+        if passw != db_u.passwd:
             flash('Wrong password')
             return redirect(url_for('balance'))
         else:
-            return render_template('balance.html', accDetail = [acc.acc_no, acc.ifsc, acc.balance])
+            return render_template('balance.html', accDetail = [db_acc.acc_no, db_acc.ifsc, db_acc.balance])
 
-    return render_template('balance.html', accDetail = [acc.acc_no, acc.ifsc, '*****'])
+    return render_template('balance.html', accDetail = [db_acc.acc_no, db_acc.ifsc, '*****'])
 
 
 @app.route('/logout')
@@ -65,8 +71,8 @@ def terms():
 
 @app.route("/loans", methods = ['POST', 'GET'])
 def loan():
-    u = Users.query.filter_by(username = session['user']).first()
-    db_acc = Accounts.query.filter_by(user_id = u.id).first()
+    if not db_acc:
+        return redirect(url_for('acc_register', user = session['user']))
 
     if request.method == 'POST':
         # acc = request.form['acc']
@@ -138,32 +144,31 @@ def loan():
 
 @app.route("/cards", methods = ['POST', 'GET'])
 def card():
-    u = Users.query.filter_by(username = session['user']).first()
-    acc = Accounts.query.filter_by(user_id = u.id).first()
-    Ccard = Credit_card.query.filter_by(credit_id = acc.acc_no)
-    Dcard = Debit_card.query.filter_by(debit_id = acc.acc_no)
+    if not db_acc:
+        return redirect(url_for('acc_register', user = session['user']))
 
-#     cno = '-'.join([str(Ccard.card_no)[i:i+4] for i in range(0, 16, 4)])
-#     cc = [Ccard.card_no, Ccard.card_holder_name, Ccard.valid_to, Ccard.cvv]
+    Ccard = Credit_card.query.filter_by(credit_id = db_acc.acc_no)
+    Dcard = Debit_card.query.filter_by(debit_id = db_acc.acc_no)
 
-#     dno = ' '.join([str(Dcard.card_no)[i:i+4] for i in range(0, 16, 4)])
-#     dd = [Dcard.card_no, Dcard.card_holder_name, Dcard.valid_to, Dcard.cvv]
+    cno = '-'.join([str(Ccard.card_no)[i:i+4] for i in range(0, 16, 4)])
+    cc = [cno, Ccard.card_holder_name, Ccard.valid_to, Ccard.cvv]
 
-#     cards = [cc, dd]
-    
-    cards = [Ccard, Dcard]
-    return render_template('cards.html', cards = [Ccard, Dcard])
+    dno = '-'.join([str(Dcard.card_no)[i:i+4] for i in range(0, 16, 4)])
+    dd = [dno, Dcard.card_holder_name, Dcard.valid_to, Dcard.cvv]
+
+    cards = [cc, dd]
+    return render_template('cards.html', cards = cards)
 
 @app.route("/transfer", methods = ['POST', 'GET'])
 def transfer():
+    if not acc:
+        return redirect(url_for('acc_register', user = session['user']))
+
     if request.method == 'POST':
         acc = request.form['acc_no']
         re_acc = request.form['re_acc']
         ifsc = request.form['ifsc']
         amt = request.form['amount']
-
-        u = Users.query.filter_by(username = session['user']).first()
-        db_acc = Accounts.query.filter_by(user_id = u.id).first()
 
         if acc != re_acc or len(acc) != 12:
             flash("Entered account numbers dosen't match")
@@ -198,9 +203,9 @@ def transfer():
 
 @app.route("/deposit", methods = ['POST', 'GET'])
 def deposit():
-    u = Users.query.filter_by(username = session['user']).first()
-    db_acc = Accounts.query.filter_by(user_id = u.id).first()
-
+    if not db_acc:
+        return redirect(url_for('acc_register', user = session['user']))
+        
     if request.method == 'POST':
         acc = request.form['acc_number']
         user = request.form['username']
@@ -211,11 +216,11 @@ def deposit():
         #     flash("Please enter a valid Account Number")
         #     return redirect(url_for('deposit'))
 
-        if user != u.username:
+        if user != db_u.username:
             flash("Incorrect Username")
             return redirect(url_for('deposit'))
 
-        elif pas != u.passwd:
+        elif pas != db_u.passwd:
             flash("Incorrect Password")
             return redirect(url_for('deposit'))
         
@@ -243,24 +248,18 @@ def deposit():
 
 @app.route("/transaction", methods = ['POST', 'GET'])
 def transaction():
-    # try:
-    u = Users.query.filter_by(username = session['user']).first()
-    acc = Accounts.query.filter_by(user_id = u.id).first()
-
-    if acc != None:
-        acc = acc.acc_no
-    all_Trans = Transactions.query.filter_by(from_acc = acc).all()
+    if db_acc != None:
+        db_acc = db_acc.acc_no
+    all_Trans = Transactions.query.filter_by(from_acc = db_acc).all()
     # finally:
     return render_template('transaction.html', all_Trans = all_Trans)
 
 
 @app.route('/delete_acc')
 def delete_account():
-    u = Users.query.filter_by(username = session['user']).first()
     try:
-        # u = Users.query.get_or_404(session['user'])
         session.pop('user', None)
-        db.session.delete(u)
+        db.session.delete(db_u)
         db.session.commit()
         return redirect(url_for('login'))
     except:
@@ -280,15 +279,17 @@ def register():
             flash("You Passwords dosen't match. Please enter same password in both")
             return redirect(url_for('register'))
 
-        u = Users.query.filter_by(username = user).first()
-        if u != None:
-            if Email == u.email:
+        if db_u != None:
+        # if username in USERS:
+        #     if Email == USERS[username][0]:
+            if Email == db_u.email:
                 flash('User already registered with same Username and Email')
                 return redirect(url_for('register'))
             else:
                 flash('User already registered with same Username')
                 return redirect(url_for('register'))
         else:
+            # if Email == Users.query.filter_by(username = user).first().email:
             if Users.query.filter_by(email = Email).first() != None:
                 flash('User already registered with same Email')
                 return redirect(url_for('register'))
@@ -314,6 +315,7 @@ def register():
                     db.session.add(users)
                     db.session.commit()
         
+                    # USERS[username] = [Email, pass1]
                     return redirect(url_for('acc_register', user = user))
 
     return render_template('register.html')
@@ -344,23 +346,23 @@ def acc_register(user):
         f_address = ' '.join([address1, address2, city])
         y, m, d = birth.split('-')
 
-        u = Users.query.filter_by(username = user).first()
-
+        # u = Users.query.filter_by(username = user).first()
+        detail = [user, fname, lname, father, birth, address1, address2, city, state, pinCode, country, phone, occupation, aadhar, pan]
         if len(pinCode) != 6:
             flash('Please enter a valid Pin Code')
-            return redirect(url_for('acc_register', user = user))
+            return render_template('account_regi.html', user = detail)
 
         elif len(phone) != 10:
             flash('Please enter a valid Phone Number')
-            return redirect(url_for('acc_register', user = user))
+            return render_template('account_regi.html', user = detail)
 
         elif len(aadhar) != 12:
             flash('Please enter a valid Aadhar Number')
-            return redirect(url_for('acc_register', user = user))
+            return render_template('account_regi.html', user = detail)
 
         elif not re.search(r"[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}", pan) and len(pan) != 10:
             flash('Please enter a valid PAN Number')
-            return redirect(url_for('acc_register', user = user))
+            return render_template('account_regi.html', user = detail)
 
         else:
             acc_num = random.randrange(100000000000, 1000000000000)
@@ -384,7 +386,7 @@ def acc_register(user):
                     marital = marital,
                     sex = sex,
                     acc_type = accType,
-                    user_id = u.id
+                    user_id = Users.query.filter_by(username = user).first().id
             )
 
             c_num = random.randrange(1000000000000000, 10000000000000000)
@@ -433,5 +435,5 @@ def acc_register(user):
 
             return redirect(url_for('login'))
 
-    return render_template('account_regi.html', user = user)
+    return render_template('account_regi.html', user = [user])
 
