@@ -3,8 +3,7 @@ from tables import *
 import re, random
 from __init__ import app
 
-global db_u, db_acc
-    
+
 @app.route("/login", methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -12,8 +11,7 @@ def login():
         passw = request.form['pass']
 
         db_u = Users.query.filter_by(username = user).first()
-        db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
-
+        
         if db_u != None:
             if passw == db_u.passwd:
                 if not Accounts.query.filter_by(user_id = db_u.id).first():
@@ -35,6 +33,8 @@ def index():
  
 @app.route("/profile", methods = ['POST', 'GET'])
 def profile():
+    db_u = Users.query.filter_by(username = session['user']).first()
+    db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
 #     if not db_acc:
 #         return redirect(url_for('acc_register', user = session['user']))
 
@@ -43,6 +43,8 @@ def profile():
 
 @app.route("/balance", methods = ['POST', 'GET'])
 def balance():
+    db_u = Users.query.filter_by(username = session['user']).first()
+    db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
 #     if not db_acc:
 #         return redirect(url_for('acc_register', user = session['user']))
 
@@ -70,8 +72,11 @@ def about():
 def terms():
     return render_template('terms.html')
 
+
 @app.route("/loans", methods = ['POST', 'GET'])
 def loan():
+    db_u = Users.query.filter_by(username = session['user']).first()
+    db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
 #     if not db_acc:
 #         return redirect(url_for('acc_register', user = session['user']))
 
@@ -152,6 +157,8 @@ def loan():
 
 @app.route("/cards", methods = ['POST', 'GET'])
 def card():
+    db_u = Users.query.filter_by(username = session['user']).first()
+    db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
 #     if not db_acc:
 #         return redirect(url_for('acc_register', user = session['user']))
 
@@ -163,10 +170,9 @@ def card():
 
     dno = ' '.join([str(Dcard.card_no)[i:i+4] for i in range(0, 16, 4)])
     dd = [dno, Dcard.card_holder_name, Dcard.valid_to, Dcard.cvv]
-
-    cards = [cc, dd]
     
-    return render_template('cards.html', cards = cards)
+    return render_template('cards.html', cards = [cc, dd])
+
 
 @app.route("/transfer", methods = ['POST', 'GET'])
 def transfer():
@@ -179,6 +185,9 @@ def transfer():
         ifsc = request.form['ifsc']
         amt = request.form['amount']
         
+        db_u = Users.query.filter_by(username = session['user']).first()
+        db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
+    
         if acc != re_acc or len(acc) != 12:
             flash("Entered account numbers dosen't match")
             return redirect(url_for('transfer'))
@@ -212,6 +221,8 @@ def transfer():
 
 @app.route("/deposit", methods = ['POST', 'GET'])
 def deposit():
+    db_u = Users.query.filter_by(username = session['user']).first()
+    db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
 #     if not db_acc:
 #         return redirect(url_for('acc_register', user = session['user']))
         
@@ -257,7 +268,10 @@ def deposit():
 
 @app.route("/transaction", methods = ['POST', 'GET'])
 def transaction():
+    db_u = Users.query.filter_by(username = session['user']).first()
+    db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
     all_Trans = Transactions.query.filter_by(from_acc = db_acc.acc_no).all()
+    
     return render_template('transaction.html', all_Trans = all_Trans)
 
 
@@ -281,6 +295,8 @@ def register():
         pass1 = request.form['password']
         pass2 = request.form['password2']
 
+        db_u = Users.query.filter_by(username = user).first()
+    
         if pass1 != pass2:
             flash("You Passwords dosen't match. Please enter same password in both")
             return redirect(url_for('register'))
@@ -439,3 +455,5 @@ def acc_register(user):
             return redirect(url_for('login'))
 
     return render_template('account_regi.html', user = [user])
+
+
