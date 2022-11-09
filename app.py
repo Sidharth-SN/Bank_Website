@@ -34,16 +34,16 @@ def index():
  
 @app.route("/profile", methods = ['POST', 'GET'])
 def profile():
-    if not db_acc:
-        return redirect(url_for('acc_register', user = session['user']))
+#     if not db_acc:
+#         return redirect(url_for('acc_register', user = session['user']))
 
     return render_template('profile.html', acc_details = db_acc)
 
 
 @app.route("/balance", methods = ['POST', 'GET'])
 def balance():
-    if not db_acc:
-        return redirect(url_for('acc_register', user = session['user']))
+#     if not db_acc:
+#         return redirect(url_for('acc_register', user = session['user']))
 
     if request.method == 'POST':
         passw = request.form['pass']
@@ -71,8 +71,8 @@ def terms():
 
 @app.route("/loans", methods = ['POST', 'GET'])
 def loan():
-    if not db_acc:
-        return redirect(url_for('acc_register', user = session['user']))
+#     if not db_acc:
+#         return redirect(url_for('acc_register', user = session['user']))
 
     if request.method == 'POST':
         # acc = request.form['acc']
@@ -151,8 +151,8 @@ def loan():
 
 @app.route("/cards", methods = ['POST', 'GET'])
 def card():
-    if not db_acc:
-        return redirect(url_for('acc_register', user = session['user']))
+#     if not db_acc:
+#         return redirect(url_for('acc_register', user = session['user']))
 
     Ccard = Credit_card.query.filter_by(credit_id = db_acc.acc_no).first()
     Dcard = Debit_card.query.filter_by(debit_id = db_acc.acc_no).first()
@@ -169,8 +169,8 @@ def card():
 
 @app.route("/transfer", methods = ['POST', 'GET'])
 def transfer():
-    if not db_acc:
-        return redirect(url_for('acc_register', user = session['user']))
+#     if not db_acc:
+#         return redirect(url_for('acc_register', user = session['user']))
 
     if request.method == 'POST':
         acc = request.form['acc_no']
@@ -211,8 +211,8 @@ def transfer():
 
 @app.route("/deposit", methods = ['POST', 'GET'])
 def deposit():
-    if not db_acc:
-        return redirect(url_for('acc_register', user = session['user']))
+#     if not db_acc:
+#         return redirect(url_for('acc_register', user = session['user']))
         
     if request.method == 'POST':
         acc = request.form['acc_number']
