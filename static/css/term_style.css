@@ -22,37 +22,38 @@ body{
     filter: brightness(75%);
 }
 .terms-box{
-    max-width: 800px;
+    max-width: 1600px;
     background-color: ghostwhite;
     color: #fff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     padding: 0 20px;
-    height: 400px;
     overflow-y: auto;
     font-size: 14px;
 }
 .terms-text{
-    padding: 0 20px;
-    height: 800px;
+    padding: 40px 20px;
+    height: 750px;
     overflow-y: auto;
     font-size: 14;
     font-weight: 500;
     color: #111;
 }
 .terms-text::-webkit-scrollbar{
-    width: 2px;
-    background-color: #282828;
+    width: 5px;
+    
+    background-color: #000000;
 }
 .terms-text::-webkit-scrollbar-thumb{
-    background-color: #f1f1f1;
+    background-color: #ffffff;
 }
 .terms-text h2{
     text-transform: uppercase;
+    padding-bottom: 2%;
 }
 .terms-text h4{
     font-size: 13px;
     text-align: center;
-    padding: 0 40px;
+    padding-top: 4%;
 }
 .terms-box h4 span{
     color: rgb(245, 68, 68);
@@ -62,7 +63,6 @@ body{
     display: flex;
     padding: 0 20px;
     justify-content: center;
-    padding-bottom: 50px;
 }
 .btn{
     height: 43px;
@@ -71,6 +71,7 @@ body{
     border-radius: 6px;
     font-size: 20px;
     padding-top: 2%;
+    padding-bottom: 0.5%;
     text-align: center;
     text-decoration: dotted;
     color: #fff;
