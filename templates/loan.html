@@ -13,76 +13,60 @@
     <div class="title">LOAN APPLICATION</div>
     <div class="content">
 
-      <form action="/loans" method="POST" onsubmit="return alert('Loan Applied succesfully. We will let you know the loan status through your registered email.');">
+      <form action="/loans" method="POST" onsubmit="return alert('Please confirm your Application and we will let you know the loan status through your registered email.');">
         <div class="user-details">
           <div class="input-box">
             <span class="details">Full Name</span>
-            <input type="text" name="name" placeholder="Enter your name" required>
+            <input type="text" name="name" placeholder="Enter your name" required value="{{detl[2]}}">
           </div>
           <div class="input-box">
             <span class="details">Father Name</span>
-            <input type="text" name="fname" placeholder="Enter your username" required>
+            <input type="text" name="fname" placeholder="Enter your username" required value="{{detl[3]}}">
           </div>
-          <!-- <div class="input-box">
-            <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" required>
-          </div> -->
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="text" name="phone" placeholder="Enter your number" required>
+            <input type="text" name="phone" placeholder="Enter your number" required value="{{detl[4]}}">
           </div>
           <div class="input-box">
             <span class="details">Address</span>
-            <input type="text" name="address" placeholder="Enter your Address" required>
+            <input type="text" name="address" placeholder="Enter your Address" required value="{{detl[5]}}">
           </div>
           <div class="input-box">
             <span class="details">Age</span>
-            <input type="number" name="age" placeholder="Enter your Age" required>
+            <input type="number" name="age" placeholder="Enter your Age" required value="{{detl[6]}}">
           </div>
           <div class="input-box">
             <span class="details">Name of Proprietor</span>
-            <input type="text" name="proprietor" placeholder="Enter name" required>
+            <input type="text" name="proprietor" placeholder="Enter name" required value="{{detl[7]}}">
           </div>
           <div class="input-box">
             <span class="details">Occupation</span>
-            <input type="text" name="occupation" placeholder="Enter your Occupation" required>
+            <input type="text" name="occupation" placeholder="Enter your Occupation" required value="{{detl[8]}}">
           </div>
           <div class="input-box">
             <span class="details">Amount of loan</span>
-            <input type="number" name="loanA" placeholder="Enter the amount" required>
+            <input type="number" name="loanA" placeholder="Enter the amount" required value="{{detl[9]}}">
           </div>
           <div class="input-box">
             <span class="details">Purpose of loan</span>
-            <input type="text" name="loanPurp" placeholder="Enter your purpose" required>
+            <input type="text" name="loanPurp" placeholder="Enter your purpose" required value="{{detl[10]}}">
           </div>
           <div class="input-box">
             <span class="details">Period of loan in months</span>
-            <input type="number" name="loanPeriod" placeholder="Enter period" required>
+            <input type="number" name="loanPeriod" placeholder="Enter period" required value="{{detl[11]}}">
           </div>
-          <!-- <div class="input-box">
-            <span class="details">Mode of repayment</span>
-            <input type="text" placeholder="Enter a mode" required>
-          </div> -->
           <div class="input-box">
             <span class="details">Nationality</span>
-            <input type="text" name="nation" placeholder="Enter your Nationality" required>
+            <input type="text" name="nation" placeholder="Enter your Nationality" required value="{{detl[12]}}">
           </div>
           <div class="input-box">
             <span class="details">Monthly income</span>
-            <input type="number" name="income" placeholder="Enter your Monthly income" required>
+            <input type="number" name="income" placeholder="Enter your Monthly income" required value="{{detl[13]}}">
           </div>
-          <!-- <div class="input-box">
-            <span class="details">Voter ID</span>
-            <input type="text" placeholder="Enter your Voter ID" required>
-          </div> -->
           <div class="input-box">
             <span class="details">Pan card Number</span>
             <input type="text" name="pan" value="{{detl[1]}}" readonly>
           </div>
-          <!-- <div class="input-box">
-            <span class="details">Passport Number</span>
-            <input type="text" placeholder="Enter your Passport number" required>
-          </div> -->
           <div class="input-box">
             <span class="details">Account number</span>
             <input type="text" name="acc" value="{{detl[0]}}" readonly>
@@ -92,7 +76,7 @@
           <div class="input-box">
             <span class="details">Loan type</span>
                 <select name="loan_type" id="selector" onchange="yesnoCheck(this);">
-                  <option value="personal">Personal Loan</option>
+                  <option value="personal" selected>Personal Loan</option>
                   <option value="home">Home Loan</option>
                   <option value="car">Car Loan</option>
                   <option value="agriculture">Agriculture Loan</option>
@@ -104,7 +88,7 @@
 
           <div class="input-box">
             <span class="details">Loan Intrest Rate</span>
-            <input id="rate" type="text" value="" name="intrestR" placeholder="10.50% p.a." readonly>
+            <input id="rate" type="text" value="10.50% p.a." name="intrestR" readonly>
           </div>
           
         </div>
