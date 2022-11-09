@@ -3,13 +3,14 @@ from tables import *
 import re, random
 from __init__ import app
 
+global db_u, db_acc
+    
 @app.route("/login", methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
         user = request.form['username']
         passw = request.form['pass']
 
-        global db_u, db_acc
         db_u = Users.query.filter_by(username = user).first()
         db_acc = Accounts.query.filter_by(user_id = db_u.id).first()
 
