@@ -23,72 +23,72 @@
     <div class="title">ACCOUNT APPLICATION</div>
     <div class="content">
 
-      <form action="/acc_register/{{user}}" method="POST">
+      <form action="/acc_register/{{user[0]}}" method="POST">
         <div class="user-details">
 
             <p id="subHead1">Personal Information:</p>
 
           <div class="input-box">
             <span class="details">First Name</span>
-            <input type="text" name="fname" placeholder="First name" required>
+            <input type="text" name="fname" placeholder="First name" required value={{user[1]}}>
           </div>
           <div class="input-box">
             <span class="details">Last Name</span>
-            <input type="text" name="lname" placeholder="Last name" required>
+            <input type="text" name="lname" placeholder="Last name" required value={{user[2]}}>
           </div>
           <div class="input-box">
             <span class="details">Father Name</span>
-            <input type="text" name="fathername" placeholder="Father name" required>
+            <input type="text" name="fathername" placeholder="Father name" required value={{user[3]}}>
           </div>
 
           <div class="input-box">
             <span class="details">Date of birth</span>
-            <input type="date" name="dob" placeholder="MM-DD-YYYY" required>
+            <input type="date" name="dob" placeholder="MM-DD-YYYY" required value={{user[4]}}>
           </div>
           <div class="input-box">
             <span class="details">Address Line 1</span>
-            <input type="text" name="address1" id="addr" placeholder="House no. / Street no." required>
+            <input type="text" name="address1" id="addr" placeholder="House no. / Street no." required value={{user[5]}}>
           </div>
           <div class="input-box"></div>
           <div class="input-box">
             <span class="details">Address Line 2</span>
-            <input type="text" name="address2" id="addr" placeholder="Address" required>
+            <input type="text" name="address2" id="addr" placeholder="Address" required value={{user[6]}}>
           </div>
           <div class="input-box"></div>
           <div class="input-box">
             <span class="details">City</span>
-            <input type="text" name="city" placeholder="City" required>
+            <input type="text" name="city" placeholder="City" required value={{user[7]}}>
           </div>
           <div class="input-box">
             <span class="details">State/Province</span>
-            <input type="text" name="state" placeholder="State" required>
+            <input type="text" name="state" placeholder="State" required value={{user[8]}}>
           </div>
           <div class="input-box">
             <span class="details">Postal code</span>
-            <input type="number" name="pinCode" placeholder="Pin Code" required>
+            <input type="number" name="pinCode" placeholder="Pin Code" required value={{user[9]}}>
           </div>
           <div class="input-box">
             <span class="details">Country</span>
-            <input type="text" name="country" placeholder="Country" required>
+            <input type="text" name="country" placeholder="Country" required value={{user[10]}}>
           </div>
 
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="number" name="phone" placeholder="+91- XXX XXX XXXX" required>
+            <input type="number" name="phone" placeholder="+91- XXX XXX XXXX" required value={{user[11]}}>
           </div>
           <div class="input-box">
             <span class="details">Occupation</span>
-            <input type="text" name="occupation" placeholder="Occupation" required>
+            <input type="text" name="occupation" placeholder="Occupation" required value={{user[12]}}>
           </div>
 
           <div class="input-box">
             <span class="details">Aadhar card Number</span>
-            <input type="number" name="aadhar" placeholder="Aadhar number" required>
+            <input type="number" name="aadhar" placeholder="Aadhar number" required value={{user[13]}}>
           </div>
 
           <div class="input-box">
             <span class="details">Pan card Number</span>
-            <input type="text" name="pan" placeholder="Pan number" required>
+            <input type="text" name="pan" placeholder="Pan number" required value={{user[14]}}>
           </div>
           
 
