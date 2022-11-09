@@ -93,21 +93,28 @@ def loan():
         intrestRate = request.form['intrestR']
         sex = request.form['gender']
 
+        det = [db_acc.acc_no, db_acc.pan_no, name, fname, phoneNo, address, age, proprietor, occupation, loanAmt, loanPurp, loanPeriod, nation, mIncome]
+
         if len(phoneNo) != 10 or phoneNo.isnumeric() != True:
             flash('Please enter a valid Phone Number')
-            return redirect(url_for('loan'))
+            return render_template('loan.html', detl = det)
+
         elif age.isnumeric() != True:
             flash('Please enter a valid Age')
-            return redirect(url_for('loan'))
+            return render_template('loan.html', detl = det)
+
         elif loanAmt.isnumeric() != True:
             flash('Please enter a valid Loan Amount')
-            return redirect(url_for('loan'))
+            return render_template('loan.html', detl = det)
+
         elif loanPeriod.isnumeric() != True:
             flash('Please enter a valid Loan Period in number of months')
-            return redirect(url_for('loan'))
+            return render_template('loan.html', detl = det)
+
         elif mIncome.isnumeric() != True:
             flash('Please enter a valid Income')
-            return redirect(url_for('loan'))
+            return render_template('loan.html', detl = det)
+
         else:
             num = random.randrange(100000000, 1000000000)
             if Loans.query.filter_by(lid = num).first():
@@ -147,21 +154,22 @@ def card():
     if not db_acc:
         return redirect(url_for('acc_register', user = session['user']))
 
-    Ccard = Credit_card.query.filter_by(credit_id = db_acc.acc_no)
-    Dcard = Debit_card.query.filter_by(debit_id = db_acc.acc_no)
+    Ccard = Credit_card.query.filter_by(credit_id = db_acc.acc_no).first()
+    Dcard = Debit_card.query.filter_by(debit_id = db_acc.acc_no).first()
 
     cno = '-'.join([str(Ccard.card_no)[i:i+4] for i in range(0, 16, 4)])
     cc = [cno, Ccard.card_holder_name, Ccard.valid_to, Ccard.cvv]
 
-    dno = '-'.join([str(Dcard.card_no)[i:i+4] for i in range(0, 16, 4)])
+    dno = ' '.join([str(Dcard.card_no)[i:i+4] for i in range(0, 16, 4)])
     dd = [dno, Dcard.card_holder_name, Dcard.valid_to, Dcard.cvv]
 
     cards = [cc, dd]
+    
     return render_template('cards.html', cards = cards)
 
 @app.route("/transfer", methods = ['POST', 'GET'])
 def transfer():
-    if not acc:
+    if not db_acc:
         return redirect(url_for('acc_register', user = session['user']))
 
     if request.method == 'POST':
@@ -169,7 +177,7 @@ def transfer():
         re_acc = request.form['re_acc']
         ifsc = request.form['ifsc']
         amt = request.form['amount']
-
+        
         if acc != re_acc or len(acc) != 12:
             flash("Entered account numbers dosen't match")
             return redirect(url_for('transfer'))
@@ -248,10 +256,7 @@ def deposit():
 
 @app.route("/transaction", methods = ['POST', 'GET'])
 def transaction():
-    if db_acc != None:
-        db_acc = db_acc.acc_no
-    all_Trans = Transactions.query.filter_by(from_acc = db_acc).all()
-    # finally:
+    all_Trans = Transactions.query.filter_by(from_acc = db_acc.acc_no).all()
     return render_template('transaction.html', all_Trans = all_Trans)
 
 
@@ -280,8 +285,6 @@ def register():
             return redirect(url_for('register'))
 
         if db_u != None:
-        # if username in USERS:
-        #     if Email == USERS[username][0]:
             if Email == db_u.email:
                 flash('User already registered with same Username and Email')
                 return redirect(url_for('register'))
@@ -289,7 +292,6 @@ def register():
                 flash('User already registered with same Username')
                 return redirect(url_for('register'))
         else:
-            # if Email == Users.query.filter_by(username = user).first().email:
             if Users.query.filter_by(email = Email).first() != None:
                 flash('User already registered with same Email')
                 return redirect(url_for('register'))
@@ -346,8 +348,8 @@ def acc_register(user):
         f_address = ' '.join([address1, address2, city])
         y, m, d = birth.split('-')
 
-        # u = Users.query.filter_by(username = user).first()
         detail = [user, fname, lname, father, birth, address1, address2, city, state, pinCode, country, phone, occupation, aadhar, pan]
+        
         if len(pinCode) != 6:
             flash('Please enter a valid Pin Code')
             return render_template('account_regi.html', user = detail)
@@ -382,7 +384,7 @@ def acc_register(user):
                     phoneNo = int(phone),
                     occupation = occupation,
                     aadhar_no = int(aadhar),
-                    pan_no = pan,
+                    pan_no = pan.upper(),
                     marital = marital,
                     sex = sex,
                     acc_type = accType,
@@ -436,4 +438,3 @@ def acc_register(user):
             return redirect(url_for('login'))
 
     return render_template('account_regi.html', user = [user])
-
